@@ -1,6 +1,6 @@
-# pizzerian
+# Application Flutter | Pizzéria
 
-A new Flutter application by Keryanne ISIDORE.
+Application faite pour un projet de cours en 2ème année
 
 ## Getting Started
 
