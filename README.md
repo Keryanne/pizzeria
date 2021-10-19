@@ -1,6 +1,6 @@
 # pizzerian
 
-A new Flutter application.
+A new Flutter application by Keryanne ISIDORE.
 
 ## Getting Started
 
