@@ -1,10 +1,10 @@
-// ignore_for_file: must_be_immutable, prefer_final_fields
-
 import 'package:flutter/material.dart';
+import 'package:pizzerian/ui/share/appbar_widget.dart';
 import 'models/menu.dart';
 import 'models/pizza.dart';
 import 'models/pizza_data.dart';
 import 'ui/pizza_list.dart';
+import 'models/cart.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   String title;
-  MyHomePage({required this.title, Key? key}) : super(key: key);
+  Cart _cart;
+
+  MyHomePage({required this.title, Key? key}) : _cart = Cart(), super(key: key);
 
   var _menus = [
     Menu(1, 'Entrées', 'entree.png', Colors.lightGreen),
@@ -37,9 +39,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBarWidget(title, _cart),
       body: Center(
         child: ListView.builder(
           itemCount: _menus.length,
@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
                 case 2: //Pizza
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PizzaList()),
+                    MaterialPageRoute(builder: (context) => PizzaList(_cart)),
                   );
                   break;
               }

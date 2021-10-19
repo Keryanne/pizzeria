@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pizzerian/models/pizza_data.dart';
 import 'package:pizzerian/models/pizza.dart';
+import 'package:pizzerian/ui/share/appbar_widget.dart';
+import 'package:pizzerian/ui/share/buy_button_widget.dart';
+import './pizza_details.dart';
+import '../models/cart.dart';
 
 class PizzaList extends StatefulWidget {
-  const PizzaList({Key? key}) : super(key: key);
+  final Cart _cart;
+  const PizzaList(this._cart, {Key? key}) : super(key: key);
 
   @override
   _PizzaListState createState() => _PizzaListState();
@@ -21,9 +26,7 @@ class _PizzaListState extends State<PizzaList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Nos Pizzas'),
-      ),
+      appBar: AppBarWidget('Nos pizzas', widget._cart),
       body: ListView.builder(
         padding: const EdgeInsets.all(8.0),
         itemCount: _pizzas.length,
@@ -39,9 +42,29 @@ class _PizzaListState extends State<PizzaList> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(10.0), top: Radius.circular(2.0)),
-          ),
-    
+      ),
     child : Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PizzaDetails(pizza, widget._cart),
+              ),
+            );
+          },
+          child: _buildPizzaDetails(pizza),
+        ),
+        BuyButtonWidget(pizza, widget._cart),
+      ],
+    ),
+    );
+  }
+
+  _buildPizzaDetails(Pizza pizza) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
@@ -59,27 +82,7 @@ class _PizzaListState extends State<PizzaList> {
           padding: const EdgeInsets.all(4.0),
           child: Text(pizza.garniture),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: 
-                  MaterialStateProperty.all<Color>(Colors.red.shade800)),
-              child: Row(
-                  children: [
-                    Icon(Icons.shopping_cart),
-                    SizedBox(width: 5),
-                    Text("Commander"),
-                  ],
-                ),
-              onPressed: () {
-                print('Commander une pizza');
-              },
-            ),
-          ],
-        ),
       ],
-    ));
+    );
   }
 }
