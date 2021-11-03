@@ -12,3 +12,7 @@ Liste des Pizzas
 
 [![](https://imgur.com/t3bcILA.png)]
 
+Description d'une Pizza
+
+[![](https://i.imgur.com/GZyYHMS.png)]
+
