@@ -19,22 +19,32 @@ class _PanierState extends State<Panier> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
+           Expanded(
+             child: ListView.builder(
               // A faire en utilisant widget._cart
-              
-            ),
-          ),
+              itemBuilder: (context, index) => InkWell(
+                 
+              ),
+             ),
+           ),
           Row(
-            children: [
-              Text('Total'),
-              Text('30 €'),
-            ],
+            children: [ Table(
+              children: <TableRow>[
+                TableRow(
+                  children: <Widget>[
+                    Container(
+                      height: 32,
+                    ),
+                  ]
+                ),
+              ]
+            ),], 
           ),
           Container(
             child: ElevatedButton(
-              child: Text('Valider'),
+              child: Text('VALIDER LE PANIER'),
               onPressed: () {
+                MaterialPageRoute(builder: (context) => Panier(widget._cart));
                 print('Valider');
               },
             )),
@@ -42,7 +52,7 @@ class _PanierState extends State<Panier> {
       ),
     );
   }
-  Widget _buildItem(CartItem cartItem) {
+  Widget _buildItem(CartItem cartItem) { //case avec les données des pizzas
     return Row(
       children: [
         Text('Image'),
