@@ -23,7 +23,7 @@ class _PanierState extends State<Panier> {
              child: ListView.builder(
               // A faire en utilisant widget._cart
               itemBuilder: (context, index) => InkWell(
-                 
+                 child: _buildItem(widget._cart),
               ),
              ),
            ),
