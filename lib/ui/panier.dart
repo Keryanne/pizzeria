@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizzerian/models/cart.dart';
+import 'package:pizzerian/ui/share/total_widget.dart';
 
 class Panier extends StatefulWidget {
   final Cart _cart;
@@ -22,24 +23,31 @@ class _PanierState extends State<Panier> {
            Expanded(
              child: ListView.builder(
               // A faire en utilisant widget._cart
-              itemBuilder: (context, index) => InkWell(
-                 child: _buildItem(widget._cart),
-              ),
+              itemCount: widget._cart.totalItems(),
+                itemBuilder: (context, index) => _buildItem(widget._cart.getCartItem(index))
              ),
            ),
           Row(
-            children: [ Table(
-              children: <TableRow>[
-                TableRow(
-                  children: <Widget>[
-                    Container(
-                      height: 32,
-                    ),
-                  ]
-                ),
-              ]
-            ),], 
+            children: [
+              Column(
+                children: [
+                  Text('Total HT'),
+                  Text('TVA'),
+                  Text('TOTAL TTC'),
+                ],
+              ),
+              Column(
+                children: [
+                  TotalWidget(widget._cart.total),
+                  Text('21.80€'),
+                  Text('21.80€'),
+                ],
+              )
+            ] 
           ),
+         Padding(
+            padding: EdgeInsets.only(top: 8.0, bottom: 12.0),
+            ),
           Container(
             child: ElevatedButton(
               child: Text('VALIDER LE PANIER'),
@@ -55,12 +63,15 @@ class _PanierState extends State<Panier> {
   Widget _buildItem(CartItem cartItem) { //case avec les données des pizzas
     return Row(
       children: [
-        Text('Image'),
+        Image.asset(
+          'assets/images/pizza/${cartItem.pizza.image}',
+          height: 180,
+          ),
         Column(
           children: [
             Text(cartItem.pizza.title),
-            Text('Prix avec InputSpinboxWidget'),
-            Text('Sous_total'),
+            Text('Prix avec InputSpinboxWidget'), //methode add
+            Text('Sous total : '), //sous total prix de le pizza * nb de l'input
           ],
         )
 
