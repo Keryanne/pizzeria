@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizzerian/models/cart.dart';
 import 'package:pizzerian/ui/share/total_widget.dart';
+import 'package:flutter_spinbox/material.dart';
 
 class Panier extends StatefulWidget {
   final Cart _cart;
@@ -38,7 +39,7 @@ class _PanierState extends State<Panier> {
               ),
               Column(
                 children: [
-                  TotalWidget(widget._cart.total),
+                  Text('20€'),
                   Text('21.80€'),
                   Text('21.80€'),
                 ],
@@ -70,7 +71,7 @@ class _PanierState extends State<Panier> {
         Column(
           children: [
             Text(cartItem.pizza.title),
-            Text('Prix avec InputSpinboxWidget'), //methode add
+            Text('input box'),//methode add
             Text('Sous total : '), //sous total prix de le pizza * nb de l'input
           ],
         )
