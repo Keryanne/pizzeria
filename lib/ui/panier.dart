@@ -59,48 +59,6 @@ class _PanierState extends State<Panier> {
                 ],
               ),
             ),
-          /* Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Container(
-               decoration: BoxDecoration(
-                 color: Colors.white,
-                 boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    spreadRadius: 2.0,
-                    blurRadius: 10,
-                    offset: Offset(4.0, 4.0)
-                  )
-               ]),
-               child:  Padding(
-                 padding: const EdgeInsets.all(3.0),
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.end,
-                   children: [
-                     Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Text('Total HT', style: TextStyle(height: 1.8),),
-                         Text('TVA', style: TextStyle(height: 1.8),),
-                         Text('TOTAL TTC', style: TextStyle(color: Colors.blue.shade800, height: 1.8),),
-                        ],
-                      ),
-                      Padding(padding: EdgeInsets.all(30.0),),
-                    
-                     Column(
-                       crossAxisAlignment: CrossAxisAlignment.end,
-                       children: [
-                        Text(' ${widget._cart.totalPanierHT()} €', style: TextStyle(height: 1.8),),
-                         Text('1.20 €', style: TextStyle(height: 1.8),),
-                         Text(' ${widget._cart.totalPanier()} €', style: TextStyle(color: Colors.blue.shade800, height: 1.8),),
-                        ],
-                      ),
-                      Padding(padding: EdgeInsets.only(right: 20.0),),
-                    ] 
-                  ),
-               ), */
-          //    ),
-          //  ),
          Padding(padding: EdgeInsets.only(top: 8.0, bottom: 12.0),),
 
           Padding(
