@@ -18,13 +18,25 @@ class Cart {
 
   double totalPanier() {
     double total = 0;
+
     _items.forEach((item) {
-      total = CartItem.pizza.total * quantity;     
+      total += item.pizza.total * item.quantity;     
     });
     // foreach sur _items
     // pizza.total * quantity (cartItem)
 
     return total;
+  }
+
+  double totalPanierHT() {
+    double totalHT = 0;
+    double tva = 1.2; // Avec une TVA de 20%
+
+       _items.forEach((item) {
+      totalHT += ((item.pizza.total * item.quantity) / tva).round();   
+    });
+
+    return totalHT;
   }
 
   void addProduct(Pizza pizza) {
@@ -43,13 +55,13 @@ class Cart {
   void removeProduct(Pizza pizza) {
     // Recherche du produit 
     int index = findCartItemIndex(pizza.id);
-    if (index == -1) {
+    if (index != 0) {
       // Supression
-      
       CartItem item = _items[index];
       item.quantity--;
     } else {
       _items.removeAt(index);
+      
     }
   }
 

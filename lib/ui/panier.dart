@@ -28,43 +28,104 @@ class _PanierState extends State<Panier> {
                 itemBuilder: (context, index) => _buildItem(widget._cart.getCartItem(index))
              ),
            ),
-          Row(
-            children: [
-              Column(
+            Container(
+              decoration: BoxDecoration(
+                 color: Colors.white,
+                 boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 2.0,
+                    blurRadius: 10,
+                    offset: Offset(4.0, 4.0)
+                  )
+               ]),
+              child: Table(
                 children: [
-                  Text('Total HT'),
-                  Text('TVA'),
-                  Text('TOTAL TTC'),
+                  TableRow(children: [
+                    Column(children: [Text('', style: TextStyle(height: 1.0))]),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total HT', style: TextStyle(height: 1.8))]),
+                    Column(children: [Text(' ${widget._cart.totalPanierHT()} €', style: TextStyle(height: 1.8))])
+                    ]),
+                    TableRow(children: [
+                    Column(children: [Text('', style: TextStyle(height: 1.0))]),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('TVA', style: TextStyle(height: 1.8))]),
+                    Column(children: [Text(' 1.2 €', style: TextStyle(height: 1.8))])
+                    ]),
+                    TableRow(children: [
+                    Column(children: [Text('', style: TextStyle(height: 1.0))]),
+                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total TTC', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))]),
+                    Column(children: [Text(' ${widget._cart.totalPanier()} €', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))])
+                    ]),
                 ],
               ),
-              Padding(padding: EdgeInsets.all(16.0),),
-              Column(
-                children: [
-                  Text(' ${widget._cart.totalItems()} €'),
-                  Text('20%'),
-                  Text(' ${widget._cart.totalPanier()} €'),
-                ],
-              )
-            ] 
-          ),
-         Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 12.0),
             ),
-          Container(
-            child: ElevatedButton(
-              child: Text('VALIDER LE PANIER'),
-              onPressed: () {
-                MaterialPageRoute(builder: (context) => Panier(widget._cart));
-                print('Valider');
-              },
-            )),
+          /* Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: Container(
+               decoration: BoxDecoration(
+                 color: Colors.white,
+                 boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 2.0,
+                    blurRadius: 10,
+                    offset: Offset(4.0, 4.0)
+                  )
+               ]),
+               child:  Padding(
+                 padding: const EdgeInsets.all(3.0),
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.end,
+                   children: [
+                     Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text('Total HT', style: TextStyle(height: 1.8),),
+                         Text('TVA', style: TextStyle(height: 1.8),),
+                         Text('TOTAL TTC', style: TextStyle(color: Colors.blue.shade800, height: 1.8),),
+                        ],
+                      ),
+                      Padding(padding: EdgeInsets.all(30.0),),
+                    
+                     Column(
+                       crossAxisAlignment: CrossAxisAlignment.end,
+                       children: [
+                        Text(' ${widget._cart.totalPanierHT()} €', style: TextStyle(height: 1.8),),
+                         Text('1.20 €', style: TextStyle(height: 1.8),),
+                         Text(' ${widget._cart.totalPanier()} €', style: TextStyle(color: Colors.blue.shade800, height: 1.8),),
+                        ],
+                      ),
+                      Padding(padding: EdgeInsets.only(right: 20.0),),
+                    ] 
+                  ),
+               ), */
+          //    ),
+          //  ),
+         Padding(padding: EdgeInsets.only(top: 8.0, bottom: 12.0),),
+
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+            child: Container(
+              child: ElevatedButton(
+                style: ButtonStyle( 
+                backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.red.shade800)),
+                child: Row(
+                  children: [
+                    SizedBox(width: 5),
+                    Text('VALIDER LE PANIER'),
+                  ],
+                ),
+                onPressed: () {
+                  MaterialPageRoute(builder: (context) => Panier(widget._cart));
+                  print('Valider');
+                },
+              )),
+          ),
         ],
       ),
     );
   }
-
-//double _quantity = 1;
-
 
   Widget _buildItem(CartItem cartItem) { //case avec les données des pizzas
   
@@ -74,44 +135,47 @@ class _PanierState extends State<Panier> {
       children: [
         Image.asset(
           'assets/images/pizza/${cartItem.pizza.image}',
-          height: 180,
+          height: 132,
           ),
-          Padding(padding: EdgeInsets.all(10.0),),
+          Padding(padding: EdgeInsets.all(3.0),),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(cartItem.pizza.title),
-             Row(
-               children: <Widget>[
-                 Text('${cartItem.pizza.total} €'),
-                  Padding(padding: EdgeInsets.all(16.0),),
-                IconButton(
-                  icon: const Icon(Icons.remove),
-                  onPressed: () {
-                    setState(() {
-                       widget._cart.removeProduct(cartItem.pizza);
-                    });
-                  },
-                ),
-
-                Text(' ${cartItem.quantity}'),
-
-                IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () {
-                    setState(() {
-                      widget._cart.addProduct(cartItem.pizza);
-                    });
-                   
-                  },
-                ),
-              ],
-             ),
-            Text('Sous total : ${_subtotal} €'), //sous total prix de le pizza * nb de l'input
+            Text(cartItem.pizza.title, style: TextStyle(fontWeight: FontWeight.bold, height: 1.8),),
+            Text('${cartItem.pizza.total} €', style: TextStyle(color: Colors.grey.shade700,height: 1.8),),
+            Text('Sous total : ${_subtotal} €', style: TextStyle(color: Colors.blue.shade800, height: 1.8), ),
           ],
-        )
-
+        ),
+        Row(
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.remove),
+              onPressed: () {
+                setState(() {
+                  widget._cart.removeProduct(cartItem.pizza);
+                });
+              },
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 0.8, color: Colors.grey,),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(' ${cartItem.quantity}'),
+              )
+              ),
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                  setState(() {
+                    widget._cart.addProduct(cartItem.pizza);
+                  });
+                },
+              ),
+            ],
+          ),
       ],
     );
   }
-
 }
