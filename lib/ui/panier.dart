@@ -28,35 +28,38 @@ class _PanierState extends State<Panier> {
                 itemBuilder: (context, index) => _buildItem(widget._cart.getCartItem(index))
              ),
            ),
-            Container(
-              decoration: BoxDecoration(
-                 color: Colors.white,
-                 boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    spreadRadius: 2.0,
-                    blurRadius: 10,
-                    offset: Offset(4.0, 4.0)
-                  )
-               ]),
-              child: Table(
-                children: [
-                  TableRow(children: [
-                    Column(children: [Text('', style: TextStyle(height: 1.0))]),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total HT', style: TextStyle(height: 1.8))]),
-                    Column(children: [Text(' ${widget._cart.totalPanierHT()} €', style: TextStyle(height: 1.8))])
-                    ]),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                   color: Colors.white,
+                   boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      spreadRadius: 2.0,
+                      blurRadius: 10,
+                      offset: Offset(4.0, 4.0)
+                    )
+                 ]),
+                child: Table(
+                  children: [
                     TableRow(children: [
-                    Column(children: [Text('', style: TextStyle(height: 1.0))]),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('TVA', style: TextStyle(height: 1.8))]),
-                    Column(children: [Text(' 1.2 €', style: TextStyle(height: 1.8))])
-                    ]),
-                    TableRow(children: [
-                    Column(children: [Text('', style: TextStyle(height: 1.0))]),
-                    Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total TTC', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))]),
-                    Column(children: [Text(' ${widget._cart.totalPanier()} €', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))])
-                    ]),
-                ],
+                      Column(children: [Text('', style: TextStyle(height: 1.0))]),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total HT', style: TextStyle(height: 1.8))]),
+                      Column(children: [Text(' ${widget._cart.totalPanierHT()} €', style: TextStyle(height: 1.8))])
+                      ]),
+                      TableRow(children: [
+                      Column(children: [Text('', style: TextStyle(height: 1.0))]),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('TVA', style: TextStyle(height: 1.8))]),
+                      Column(children: [Text(' 1.2 €', style: TextStyle(height: 1.8))])
+                      ]),
+                      TableRow(children: [
+                      Column(children: [Text('', style: TextStyle(height: 1.0))]),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total TTC', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))]),
+                      Column(children: [Text(' ${widget._cart.totalPanier()} €', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))])
+                      ]),
+                  ],
+                ),
               ),
             ),
          Padding(padding: EdgeInsets.only(top: 8.0, bottom: 12.0),),
