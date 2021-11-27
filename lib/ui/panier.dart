@@ -55,8 +55,8 @@ class _PanierState extends State<Panier> {
                       ]),
                       TableRow(children: [
                       Column(children: [Text('', style: TextStyle(height: 1.0))]),
-                      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total TTC', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))]),
-                      Column(children: [Text(' ${widget._cart.totalPanier()} €', style: TextStyle(height: 1.8, color: Colors.blue.shade800,))])
+                      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Total TTC', style: TextStyle(height: 1.8, color: Colors.blue.shade800, fontSize: 18))]),
+                      Column(children: [Text(' ${widget._cart.totalPanier()} €', style: TextStyle(height: 1.8, color: Colors.blue.shade800, fontSize: 18))])
                       ]),
                   ],
                 ),
