@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pizzerian/models/pizza.dart';
+import 'package:pizzeria/models/pizza.dart';
 
 class CartItem {
   final Pizza pizza;
